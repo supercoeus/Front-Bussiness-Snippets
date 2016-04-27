@@ -1,0 +1,39 @@
+<snippet>
+	<content><![CDATA[
+"use strict";
+// 视图类
+var $2 = require("views/$1");
+// 页面实例储存对象
+var Pages = {};
+// 当前视图实例名
+var now  = "";
+
+// 入口
+exports.show = function (app, boot) {
+	app.setTitle("$4");
+	var params = boot.params.pathParams;
+
+	if (!Pages.$3Page) {
+		Pages.$3Page = app.core.create("$3Page", $2, {
+			"target": app.mainCon
+		});
+	} else {
+		Pages.$3Page.show();
+	}
+	now = "$3Page";
+	document.body.scrollTop = 0;
+};
+
+// 关闭页面
+exports.hide = function () {
+	if (now && Pages[now]) {
+		Pages[now].hide();
+	}
+};
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>page</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.js</scope>
+	<description>page model</description>
+</snippet>

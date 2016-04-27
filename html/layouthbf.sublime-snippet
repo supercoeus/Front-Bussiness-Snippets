@@ -1,0 +1,12 @@
+<snippet>
+	<content><![CDATA[
+div class="P-$1Head">$2</div>
+<div class="P-$1Body">$3</div>
+<div class="P-$1Foot">$4</div>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>layout:hbf</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.html</scope>
+	<description>layout:head&body&foot</description>
+</snippet>

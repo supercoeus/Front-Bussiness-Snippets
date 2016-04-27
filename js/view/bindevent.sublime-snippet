@@ -1,0 +1,30 @@
+<snippet>
+	<content><![CDATA[
+/**
+ * 事件绑定
+ */
+,bindEvent: function(){
+	var me = this;
+	var eventMap = {
+		click: { target: "*[data-action]", attr: "data-action" }
+		,focus: { target: "*[data-action-focus]", attr: "data-action-focus" }
+		,blur: { target: "*[data-action-blur]", attr: "data-action-blur" }
+	};
+	for(var event in eventMap){
+		var target = eventMap[event].target;
+		this.\$el.find(target).on(event,function(ev){
+			var e = eventMap[ev.type];
+			var action = \$(ev.target).closest('['+e.attr+']').attr(e.attr);
+			if (me[action]) {
+				me[action](ev);
+			}
+		});
+	}
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>bindEvent</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.js</scope>
+	<description>view bindEvent</description>
+</snippet>

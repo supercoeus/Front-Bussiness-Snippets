@@ -1,0 +1,18 @@
+<snippet>
+	<content><![CDATA[
+wx.addCard({
+	cardList: [{
+		cardId: card.cardId
+		,cardExt: card.cardExt
+	}], // 需要添加的卡券列表
+	success: function (res) {
+		app.successNotify('已添加卡券');
+	}
+});
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>addCard</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.js</scope>
+	<description>weixin addCard</description>
+</snippet>

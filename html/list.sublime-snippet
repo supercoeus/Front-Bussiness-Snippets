@@ -1,0 +1,19 @@
+<snippet>
+	<content><![CDATA[
+div class="P-$1List">${2:
+	<div class="P-$1ListTop">
+		$3
+	</div>}
+</div>
+<div class="P-$1ListTips">
+	${4:没有找到相关结果}
+</div>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>list</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.html</scope>
+	<description>list</description>
+</snippet>
+
+

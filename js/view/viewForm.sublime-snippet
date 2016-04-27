@@ -1,0 +1,192 @@
+<snippet>
+	<content><![CDATA[
+var app = require("core");
+var Container = require("container");
+var template = require("template");
+var layoutTpl = __inline("layout.tpl");
+var Form = require("form");
+
+/**
+ * 验证不通过时的提示文本
+ * @type {Object}
+ */
+var form_verify_tip = {
+	"key":"请输入"
+	,"key":"请输入"
+	,"key":"请输入"
+};
+
+var $1 = Container.extend(
+	function $1(config){
+		config = app.common.extend(
+			{
+				"cls":"P-$1"
+				,"html": template.render(layoutTpl,config)
+			}
+			,config
+		);
+		this.notify = null;
+		$1.master(this,null,[config]);
+	}
+	,{
+		init: function(){
+			$1.master(this, "init");
+			this.doms = {
+				"formCon":this.\$el.find(".P-$1Form")
+			};
+			// 日期配置
+			var dateConf = app.getConf("date");
+			// 表单
+			this.$2Form = this.create(
+				"$2Form"
+				,Form
+				,{
+					"target": this.doms.formCon
+					,"buttons": [${3:"return", }${4:"cancel", }"submit"]
+					,"types":{${5:
+						"return":{
+							"text": "返回" // 默认class M-btnPrev
+						\}
+						,}${6:"cancel":{
+							"text": "取消" // 默认class M-btnPrev
+						\}
+						,}"submit":{
+							"text": "提交"
+							,"class": "M-btnDone" // 默认class M-btnNext
+						}
+					}
+					,"sections":{
+						"reg":[
+							{
+								"type":"tel"
+								,"text":"手机号"
+								,"key":"phone"
+								,"placeholder":"请输入手机号码"
+								,"readonly":true
+								,"symbol":":"
+							}
+							,{
+								"type":"captcha"
+								,"text":"验证码"
+								,"codeType":"number"
+								,"verify":"captcha"
+								,"key":"code"
+								,"placeholder":"请输入6位验证码"
+								,"symbol":":"
+								,"param":{
+									"phoneNum":this.config.phone
+									,"sceneType":1
+								}
+							}
+							,{
+								"type":"input"
+								,"text":"姓名"
+								,"key":"name"
+								,"placeholder":"请输入姓名"
+								,"symbol":":"
+							}
+							,{
+								"type":"date"
+								,"text":"生日"
+								,"key":"bday"
+								,"placeholder":"请输入生日日期"
+								,"verify":"date"
+								,"symbol":":"
+								,"max":dateConf.max
+								,"min":dateConf.min
+							}
+							,{
+								"type":"radio"
+								,"text":"性别"
+								,"key":"sex"
+								,"group":[
+									{"label":"男","value":1}
+									,{"label":"女","value":2,"def":true}
+								]
+								,"verify":"trim"
+								,"symbol":":"
+							}
+						]
+					}
+					,"data":{
+						"phone":this.config.phone
+					}
+				}
+			);
+		}
+		/**
+		 * 表单验证失败事件响应函数
+		 * @param  {Object}  ev 消息对象
+		 * @return {Boolean}    阻止冒泡
+		 */
+		,onFormInvalid: function(ev){
+			var invalid = ev.param;
+			if (invalid && form_verify_tip[invalid.key]) {
+				app.notify(form_verify_tip[invalid.key]);
+			}
+			return false;
+		}
+		/**
+		 * 表单提交事件
+		 * @param  {Object}  ev 消息对象
+		 * @return {Boolean}    阻止冒泡
+		 */
+		,onFormSubmit: function(ev){
+			var fData = ev.param;
+			this.formData = fData;
+			app.dc.post(
+				"/${7:api}"
+				,JSON.stringify(fData)
+				,null
+				,this
+			);
+			return false;
+		}
+		/**
+		 * 数据请求响应函数
+		 * @param  {Object}    err 错误对象
+		 * @param  {Object}    re  数据对象
+		 */
+		,onData: function(err, re){
+			app.common.toggleLoading(0);
+			if(re){
+				// 成功提交表单后操作
+			}else{
+				app.error(err, true);
+			}
+		}${8:
+		/**
+		 * 表单重置事件
+		 * @param  \{Object\}  ev 消息对象
+		 * @return \{Boolean\}    阻止冒泡
+		 */
+		,onFormCancel: function()\{
+			return false;
+		\}}${9:
+		/**
+		 * 表单返回事件
+		 * @param  \{Object\}  ev 消息对象
+		 * @return \{Boolean\}    阻止冒泡
+		 */
+		,onFormReturn: function()\{
+			return false;
+		\}}
+		/**
+		 * 视图显示
+		 */
+		,show: function(data){
+			this.$2Form.reset();
+			$1.master(this, "show");
+		}
+		$10
+	}
+);
+
+module.exports = $1;
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>viewForm</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.js</scope>
+	<description>view viewForm</description>
+</snippet>

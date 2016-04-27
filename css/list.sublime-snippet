@@ -1,0 +1,19 @@
+<snippet>
+	<content><![CDATA[
+.P-$1{
+	&List{${2:
+		&Top{
+			$3
+		\}}
+		&Tips{
+			$4
+		}
+	}
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>list</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.css meta.property-list.css - meta.property-value.css, source.less - meta.property-value.css, source.scss - meta.property-list - support.function.name.sass.library - variable.other.root</scope>
+	<description>list</description>
+</snippet>

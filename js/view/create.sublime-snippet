@@ -1,0 +1,17 @@
+<snippet>
+	<content><![CDATA[
+this.$1 = this.create(
+	"$1"
+	,$2
+	,{
+		"target": ${3:this.doms.${4:target}Con}
+		,"data": {$5}
+	}
+);
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>create</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.js</scope>
+	<description>view create</description>
+</snippet>

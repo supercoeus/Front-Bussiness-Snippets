@@ -1,0 +1,55 @@
+<snippet>
+	<content><![CDATA[
+/**
+ * 显示弹出框
+ */
+,showPop: function(){
+	if(!this.$1PopWin){
+		this.$1PopWin = this.create(
+			"$1PopWin"
+			,Pop
+			,{
+				"confirmMod": ${2:false}
+				,"icon": "${3:done/fail/tip/phone}"
+				,"showHead": ${4:1}
+				,"content": "$5"
+				,"buttons": ["cancel", "ok"]
+				,"buttonConfig":{
+					"cancel": {
+						"text": "${6:取消}"
+					}
+					,"ok":{
+						"text": "${7:确认}"
+					}
+				}
+				,silence: ${8:false}
+			}
+		);
+	}
+	this.$1PopWin.show();
+}
+/**
+ * 确定响应事件
+ * @param  {Object}  ev 事件消息对象
+ * @return {Boolean}    阻止冒泡
+ */
+,onPopOk: function(ev){
+	${9:// 如果silence = true则本方法不被触发!}
+	return false;
+}
+/**
+ * 取消响应事件
+ * @param  {Object}  ev 事件消息对象
+ * @return {Boolean}    阻止冒泡
+ */
+,onPopCancel: function(ev){
+	${10:// 如果silence = true则本方法不被触发!}
+	return false;
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>showPop</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.js</scope>
+	<description>view showPop</description>
+</snippet>

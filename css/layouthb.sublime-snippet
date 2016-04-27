@@ -1,0 +1,17 @@
+<snippet>
+	<content><![CDATA[
+.P-$1{
+	&Head{
+		$2
+	}
+	&Body{
+		$3
+	}
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>layout:hb</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.css meta.property-list.css - meta.property-value.css, source.less - meta.property-value.css, source.scss - meta.property-list - support.function.name.sass.library - variable.other.root</scope>
+	<description>layout:head&body</description>
+</snippet>

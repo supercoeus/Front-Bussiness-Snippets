@@ -1,0 +1,136 @@
+<snippet>
+	<content><![CDATA[
+var app = require("core");
+var Container = require("container");
+var template = require("template");
+var layoutTpl = __inline("layout.tpl");
+var listTpl = __inline("items.tpl");
+var listConTpl = __inline("listCon.tpl");
+var List = require("list");
+
+var $1 = Container.extend(
+	function $1(config){
+		config = app.common.extend(
+			{
+				"cls":"P-$1"
+				,"html": template.render(layoutTpl,config.data || {})
+			}
+			,config
+		);
+		$1.master(this,null,[config]);
+	}
+	,{
+		/**
+		 * 初始化
+		 */
+		init: function(){
+			$1.master(this, "init");
+			this.doms = {
+				"listCon": this.\$el.find(".P-$1List")${2:
+				,"listTopCon": this.\$el.find(".P-$1ListTop")}
+				,"listTipsCon": this.\$el.find(".P-$1ListTips")
+			};
+			this.getData();
+		}
+		/**
+		 * 视图显示
+		 */
+		,show: function(){
+			this.getData();
+			$1.master(this, "show");
+		}
+		/**
+		 * 获取数据
+		 */
+		,getData: function(){
+			app.common.toggleLoading(1, "body");
+			app.dc.get(
+				'${3:api}'
+				,{$4}
+				,this
+			);
+		}
+		/**
+		 * 数据请求响应函数
+		 * @param  {Object}    err 错误对象
+		 * @param  {Object}    re  数据对象
+		 */
+		,onData: function(err, re){
+			app.common.toggleLoading(0);
+			if (!err && re) {
+				this.setData(re);
+				this.renderList();
+			} else {
+				app.error(err, true);
+			}
+		}
+		/**
+		 * 设置数据
+		 * @param {object} re  回调返回对象
+		 */
+		,setData: function(re){
+			if(re){
+				this.listData = {
+					items: re
+				}
+			}
+		}
+		/**
+		 * 渲染列表 列表不存在就创建，否则刷新列表数据
+		 */
+		,renderList: function(){
+			if (this.list) {
+				this.list.setData(this.listData, true);
+			} else {
+				this.list = this.create(
+					"list"
+					,List.tlist
+					,{
+						"target": this.doms.listCon
+						,"data": this.listData
+						,"showTitle": ${5:false}
+						,"tpls": {
+							"item": listTpl
+							,"con": listConTpl
+						}
+						,"cls":{
+							"main": ""
+						}
+						// 暂时不开分页，允许显示1000个
+						,"showNum": 1000
+						,"hideOnNoData": ${6:false}
+					}
+				);
+			}
+			// 没有数据，显示提示，否则隐藏提示
+			if(this.listData && this.listData.items && this.listData.items.length > 0){
+				this.doms.listTipsCon.hide();
+			}else{
+				this.doms.listTipsCon.show();
+			}
+		}
+		/**
+		 * 列表点击事件
+		 * @param  {Object}  ev 事件对象
+		 * @return {Boolean}    阻止冒泡
+		*/
+		,onItemTap: function(ev){
+			// 列表项数据
+			var dat = ev.param && ev.param.data;
+			if (dat) {
+				$7
+			}
+			return false;
+		}
+		$8
+	}
+);
+
+module.exports = $1;
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>viewList</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.js</scope>
+	<description>view viewList</description>
+</snippet>

@@ -1,0 +1,37 @@
+<snippet>
+	<content><![CDATA[
+var app = require("core");
+var Container = require("container");
+var template = require("template");
+var layoutTpl = __inline("layout.tpl");
+
+var $1 = Container.extend(
+	function $1(config){
+		config = app.common.extend(
+			{
+				"cls":"P-$1"
+				,"html": template.render(layoutTpl,config.data || {})
+			}
+			,config
+		);
+		$1.master(this,null,[config]);
+	}
+	,{
+		/**
+		 * 初始化
+		 */
+		init: function(){
+			$1.master(this, "init");
+		}
+		$2
+	}
+);
+
+module.exports = $1;
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>view</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.js</scope>
+	<description>view model</description>
+</snippet>

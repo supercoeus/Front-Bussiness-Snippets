@@ -1,0 +1,16 @@
+<snippet>
+	<content><![CDATA[
+/**
+ * 视图隐藏
+ */         
+,hide:function(){
+	${1:Class}.master(this, "hide");
+	${2}
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>hide</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.js</scope>
+	<description>view hide</description>
+</snippet>

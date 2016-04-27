@@ -1,0 +1,11 @@
+<snippet>
+	<content><![CDATA[
+var $2 = app.getConf("$1");${3: // 支持点运算符 app.getConf('data.ds')
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>getConf</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.js</scope>
+	<description>codeblock getConf</description>
+</snippet>

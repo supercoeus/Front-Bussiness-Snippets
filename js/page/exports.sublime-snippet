@@ -1,0 +1,25 @@
+<snippet>
+	<content><![CDATA[
+
+// $1
+exports.$2 = function (app, boot) {
+	app.setTitle("$3");
+	var params = boot.params.pathParams;
+
+	if (!Pages.$5Page) {
+		Pages.$5Page = app.core.create("$5Page", $4, {
+			"target": app.mainCon
+		});
+	} else {
+		Pages.$5Page.show();
+	}
+	now = "$5Page";
+	document.body.scrollTop = 0;
+};
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>exports</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.js</scope>
+	<description>page exports</description>
+</snippet>

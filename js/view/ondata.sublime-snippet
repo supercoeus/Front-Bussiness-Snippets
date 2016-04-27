@@ -1,0 +1,22 @@
+<snippet>
+	<content><![CDATA[
+/**
+ * 数据请求响应函数
+ * @param  {Object}    err 错误对象
+ * @param  {Object}    re  数据对象
+ */
+,onData: function(err, re){
+	app.common.toggleLoading(0);
+	if (!err && re) {
+		$1
+	} else {
+		app.error(err, true);
+	}
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>onData</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.js</scope>
+	<description>view onData</description>
+</snippet>
